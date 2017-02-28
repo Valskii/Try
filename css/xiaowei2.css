@@ -1,0 +1,134 @@
+*{
+	/*border: 1px solid red;*/
+	padding: 0px;
+	margin: 0px;
+}
+
+#head{
+
+	overflow: hidden;
+	width: 100%;
+	background-color: #333333;
+}
+#head img{
+	margin-left:20px; 
+}
+#head ul{
+	margin-top: 8px;
+	float: right;
+}
+#head li{
+	font-family: Microsoft Yahei;
+	font-size: 12px;
+	float: left;
+	margin: 8px;
+	width: 80px;
+}
+#head ul li a{
+	color: white;
+	text-decoration: none;
+}
+#head ul li:last-child a{
+	color: grey;
+	
+}
+#body{
+	width: 100%;
+	border: 1px solid rgba(85,89,93,0.2);
+	background-color: rgba(85,89,93,0.2);
+}
+#body>div{
+	background-color: white;
+	padding: 20px;
+	line-height: 30px;
+	border: 1px solid rgba(85, 89, 93,0.2);
+	border-bottom: 2px solid grey;
+	border-right: 2px solid grey;
+	margin: 10px;
+}
+#body div p{
+	font-family: Microsoft Yahei;
+}
+#body div h2{
+	margin-top:20px;
+	margin-bottom:10px; 
+}
+#body div h3{
+	color: grey;
+}
+#body div>a{
+	color: grey;
+}
+#body ul li{
+	list-style: none;
+	margin-left: 20px;
+}
+#body ul:nth-child(2) li{
+	border: 1px solid grey;
+	width: 300px;
+	display: block;
+	padding: 10px;
+	margin:10px;
+}
+#body ol li{
+	margin-left: 50px;
+	font-weight: bold;
+}
+#body ol li{
+	margin-left: 50px;
+	font-weight: bold;
+}
+#body div:nth-child(4) table{
+	width: 100%;
+	text-align: left;
+	border-collapse: collapse;
+	border: 1px solid rgba(85,89,93,0.2);
+}
+#body  div:nth-child(4) th{
+	color: white;
+	border: 2px solid rgba(85,89,93,0.5);
+	background-color: rgb(34, 34, 34);
+}
+#body  div:nth-child(4) td{
+	border: 2px solid rgba(85,89,93,0.5);
+}
+#body div:nth-child(4) table tr:last-child{
+	background-color: rgba(85,89,93,0.4);
+}
+#body div:last-child h2{
+	border-left: 4px solid rgba(85,89,93,0.5);
+	padding: 5px;
+}
+#body div:last-child table {
+	font-weight: bold;
+	
+	display: inline-block;
+}
+
+
+#body div:last-child table td:nth-child(1){
+	text-align: right;
+}
+#body div:last-child table td:nth-child(2){
+	text-align: left;
+}
+#body div:last-child form{
+	text-align: center;
+}
+#submit_but{
+	height: 50px;
+	width: 100%;
+	border-radius: 10px;
+	background-color: blue;
+	font-family: Microsoft Yahei;
+	font-size: 20px;
+	color: white;
+}
+#bottom{
+	background-color: black;
+	color:white;
+	text-align: center;
+	height: 80px;
+	width: 100%;
+	padding: 20px;
+}
