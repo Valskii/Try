@@ -1,0 +1,147 @@
+*{
+	font-family: Microsoft Yahei;
+	padding: 0px;
+	margin: 0px;
+}
+body{
+	 
+	background-color: rgba(85,89,93,0.2);
+}
+
+h2{
+	margin-top:20px;
+	margin-bottom:10px; 
+}
+h3{
+	color: grey;
+	margin-bottom:10px; 
+}
+
+.head{
+	width: 100%;
+	background-color: #333333;
+	padding: 10px;
+}
+.head ul{
+	float: right;
+}
+.head li{
+	margin: 15px;
+	float: left;
+}
+.head a{
+	
+	color: white;	
+}
+.fir{
+	background-color: white;
+	overflow: hidden;
+	
+	border: 1px solid rgba(85, 89, 93,0.2);
+	border-bottom: 2px solid grey;
+	border-right: 2px solid grey;
+
+	margin: 10px;
+	margin-right: 530px; 
+	padding: 20px;
+}
+.fir a:nth-child(1){
+	color: grey;
+}
+.fir p{
+	margin-top:10px; 
+	font-size: 20px;
+}
+
+.fir2{
+	position: absolute;
+	top:73px;
+	right: 0px;
+	width: 470px;
+	background-color: white;
+	
+	
+	border: 1px solid rgba(85, 89, 93,0.2);
+	border-bottom: 2px solid grey;
+	border-right: 2px solid grey;
+
+	margin: 10px; 
+	padding: 20px;
+}
+.fir2 h2{
+	border-left: 
+}
+.fir2 td:nth-child(1){
+	display: block;
+	width: 150px;
+	text-align: right;
+}
+.fir2 td:nth-child(2){
+	text-align: left;
+}
+.fir2 table{
+	display: inline-block;
+	align: center;
+}
+.fir2 form{
+	text-align: center;
+}
+.fir2 h2{
+	padding: 10px;
+	border-left: 3px solid grey; 
+}
+#submit_but{
+	height: 50px;
+	width: 100%;
+	border-radius: 10px;
+	background-color: blue;
+	font-family: Microsoft Yahei;
+	font-size: 20px;
+	color: white;
+}
+.fir img{
+	margin: 20px;	
+	width: 50%;
+}
+
+
+.fir4 ul{
+	display: flex;
+	list-style: none;
+	flex-flow:row wrap; 
+}
+.fir4 li{
+	text-align: center;
+	margin: 10px;
+	flex:1 18%; 
+	border: 1px solid grey;
+}
+.fir5 table{
+	width: 100%;
+	text-align: left;
+	border-collapse: collapse;
+	border: 1px solid rgba(85,89,93,0.2);
+}
+.fir5 th{
+	color: white;
+	border: 2px solid rgba(85,89,93,0.5);
+	background-color: rgb(34, 34, 34);
+}
+.fir5 td{
+	border: 2px solid rgba(85,89,93,0.5);
+	asdd
+}
+.fir5 li{
+	font-weight: bold;
+	margin-left: 25px;
+}
+.fir5 tr:last-child{
+	background-color: rgba(85,89,93,0.4);
+}
+.foot{
+	width: 100%;
+	height: 100px;
+	color: white;
+	text-align: center;
+	background-color: black;
+}
