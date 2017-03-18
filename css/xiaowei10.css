@@ -8,6 +8,7 @@
 	flex-flow: row no-wrap;
 	background-color: lightgrey;
 	justify-content: space-between;
+	align-items: center;
 }
 .container > *{
 	width: 150px;
