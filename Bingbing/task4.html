@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>task5</title>
+	<style type="text/css">
+		#showBoard{
+			overflow: hidden;
+		}
+		#showBoard > *{
+			width: 100px;
+			height: 100px;
+			background: red;
+			margin: 10px;
+			float: left;
+			cursor: pointer;
+			word-wrap: break-word;
+		}
+	</style>
+</head>
+<body>
+	<input type="text" id = "input_data" >
+	<input type="button" value="左侧入" id="but1">
+	<input type="button" value="右侧入" id="but2">
+	<input type="button" value="左侧出" id="but3">
+	<input type="button" value="右侧出" id="but4">
+	<br>
+	<div id = "showBoard"></div>
+	
+	<script type="text/javascript">
+			
+			function deleteSelf(){
+				document.getElementById("showBoard").removeChild(this);
+			}
+			function checkData(){
+				var data = document.getElementById("input_data").value;
+				if(data.length==0) {alert("Input legal Data!!");return false;}
+				for(var i=0;i<data.length;i++){
+					if(!(data[i]>='0' && data[i]<='9')) {alert("Input legal Data!!");return false;}
+				}
+				var add = document.createElement("div");
+				add.innerText = data;
+				add.addEventListener("click",deleteSelf,false);
+				return add;
+			}
+			
+			function addLeft(){
+				var add  = checkData();
+				if(!add) return ;
+				var oShow = document.getElementById("showBoard");
+				if(oShow.childNodes.length==0) oShow.appendChild(add);
+				else                           oShow.insertBefore(add,oShow.childNodes[0]);
+			}
+			function addRight(){
+				var add = checkData();
+				if(!add) return ;
+
+				var oShow = document.getElementById("showBoard");
+				oShow.appendChild(add);
+			}
+			function deleteLeft(){
+				var oShow = document.getElementById("showBoard");
+				oShow.removeChild(oShow.firstChild);
+			}
+			function deleteRight(){
+				var oShow = document.getElementById("showBoard");
+				oShow.removeChild(oShow.childNodes[oShow.childNodes.length-1]);
+			}
+			function init(){
+				document.getElementById("but1").addEventListener("click",addLeft,false);
+				document.getElementById("but2").addEventListener("click",addRight,false);
+				document.getElementById("but3").addEventListener("click",deleteLeft,false);
+				document.getElementById("but4").addEventListener("click",deleteRight,false);
+			}
+			init();
+	</script>
+</body>
+</html>
