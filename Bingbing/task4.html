@@ -60,10 +60,12 @@
 			}
 			function deleteLeft(){
 				var oShow = document.getElementById("showBoard");
+				alert(oShow.firstChild.innerText);
 				oShow.removeChild(oShow.firstChild);
 			}
 			function deleteRight(){
 				var oShow = document.getElementById("showBoard");
+				alert(oShow.childNodes[oShow.childNodes.length-1].innerText);
 				oShow.removeChild(oShow.childNodes[oShow.childNodes.length-1]);
 			}
 			function init(){
