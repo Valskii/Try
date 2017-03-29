@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>task5</title>
+	<style type="text/css">
+		*{
+			margin: 0px;
+			padding: 0px;
+			text-align: center;
+		}
+		.show{
+			display: flex;
+			height: 105px;
+			align-items: flex-end;
+		}
+		.show > *{
+			width: 10px;
+			margin: 2px;
+			background-color: red;
+		}
+		input{
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<input type="text"   id="input_data">
+	<input type="button" id="but1" value="确认">
+	<div id="show" class="show"></div>
+	排序后
+	<div id="sort_show" class="show"></div>
+	<script type="text/javascript">
+		var dataSet = new Array();
+		function check(data){
+			data = parseInt(data);
+			if(data > 100 || data < 10) {alert("10<=input<=100");return false;}
+			else                        {dataSet.push(data);return data;}
+		}
+		function createChild(height){
+			var data = check(height);
+			if(!data) return data;
+
+			var child = document.createElement("div");
+			child.style.height = data+"px";
+			return child;
+		}
+		function addChild(parent,child) {
+			if(!child) return ;
+			parent.appendChild(child);
+		}
+		function insert_sort(){
+			var insert_value = dataSet[dataSet.length-1];
+			for(var i = dataSet.length-2;i>=0;i--){
+				if(insert_value < dataSet[i]) {dataSet[i+1] = dataSet[i];}
+				else{dataSet[i+1]=insert_value;break;}
+			}
+
+		}
+		function sort_show(){
+			var childs = document.getElementById("sort_show").childNodes;
+			var show = document.getElementById("sort_show");
+			var	add = document.createElement("div");
+			add.style.height = dataSet[dataSet.length-1]+"px";
+			show.appendChild(add);
+			for(var i = 0;i<childs.length-1;i++){
+				 var height = parseInt(childs[i].style.height);
+				 if(height!=dataSet[i]) {childs[i].style.height = dataSet[i]+"px";}
+			}
+		}
+		function btn1_click(){
+			if(document.getElementById("show").querySelectorAll("div").length > 60){
+				alert("no more than 60 data.");
+				return ;
+			}
+			var child = createChild(document.getElementById("input_data").value);
+			if(!child) return ;
+			addChild(document.getElementById("show"),child);
+			insert_sort();
+			sort_show();
+		}
+		function btn1_keyPress(e){
+			if(e.keyCode == 13){
+				btn1_click();
+				this.value = null;
+			}
+		}
+		function init(){
+			document.getElementById("but1").addEventListener("click",btn1_click,false);
+			document.getElementById("input_data").addEventListener("keypress",btn1_keyPress,false);
+			
+			
+		}
+		init();
+	</script>
+</body>
+</html>
