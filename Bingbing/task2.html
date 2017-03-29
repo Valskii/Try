@@ -5,14 +5,12 @@
     <title>IFE JavaScript Task 01</title>
   </head>
 <body>
-
   <h3>污染城市列表</h3>
   <ul id="aqi-list">
 <!--   
     <li>第一名：福州（样例），10</li>
       <li>第二名：福州（样例），10</li> -->
   </ul>
-
 <script type="text/javascript">
 
 var aqiData = [
@@ -36,7 +34,6 @@ var aqiData = [
   }
   var oUl = document.getElementById("aqi-list");
   var oLi = new Array();
-
   for(var i in aqiData){
     if(aqiData[i][1] > 60){
       oLi.push(aqiData[i]);
@@ -49,7 +46,7 @@ var aqiData = [
     add.innerText = "第"+(i+1)+"名："+oLi[i][0]+"，"+oLi[i][1];
     oUl.appendChild(add);
   }
-
+  console.log(document.querySelectorAll("li"));
 })();
 
 </script>
