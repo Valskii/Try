@@ -4,94 +4,126 @@
 	<meta charset="UTF-8">
 	<title>task5</title>
 	<style type="text/css">
-		*{
-			margin: 0px;
-			padding: 0px;
-			text-align: center;
-		}
-		.show{
+		#showBoard{
+			height: 300px;
+			overflow: hidden;
 			display: flex;
-			height: 105px;
 			align-items: flex-end;
 		}
-		.show > *{
-			width: 10px;
-			margin: 2px;
-			background-color: red;
-		}
-		input{
-			text-align: center;
+		#showBoard > *{
+			width: 30px;
+			height: 100px;
+			background: red;
+			margin: 10px;
+			float: left;
+			cursor: pointer;
+			word-wrap: break-word;
+			font-size: 16px;
 		}
 	</style>
 </head>
 <body>
-	<input type="text"   id="input_data">
-	<input type="button" id="but1" value="确认">
-	<div id="show" class="show"></div>
-	排序后
-	<div id="sort_show" class="show"></div>
+	<input type="text" id = "input_data" >
+	<input type="button" value="左侧入" id="but1">
+	<input type="button" value="右侧入" id="but2">
+	<input type="button" value="左侧出" id="but3">
+	<input type="button" value="右侧出" id="but4">
+	<input type="button" id = 'sort' value="冒泡排序">
+	<br>
+	<div id = "showBoard"></div>
+	
 	<script type="text/javascript">
-		var dataSet = new Array();
-		function check(data){
-			data = parseInt(data);
-			if(data > 100 || data < 10) {alert("10<=input<=100");return false;}
-			else                        {dataSet.push(data);return data;}
-		}
-		function createChild(height){
-			var data = check(height);
-			if(!data) return data;
-
-			var child = document.createElement("div");
-			child.style.height = data+"px";
-			return child;
-		}
-		function addChild(parent,child) {
-			if(!child) return ;
-			parent.appendChild(child);
-		}
-		function insert_sort(){
-			var insert_value = dataSet[dataSet.length-1];
-			for(var i = dataSet.length-2;i>=0;i--){
-				if(insert_value < dataSet[i]) {dataSet[i+1] = dataSet[i];}
-				else{dataSet[i+1]=insert_value;break;}
+			function deleteText(){
+				var oInput = this.parentNode.querySelector("input")
+				oInput.value=null;
+				oInput.focus();
 			}
-
-		}
-		function sort_show(){
-			var childs = document.getElementById("sort_show").childNodes;
-			var show = document.getElementById("sort_show");
-			var	add = document.createElement("div");
-			add.style.height = dataSet[dataSet.length-1]+"px";
-			show.appendChild(add);
-			for(var i = 0;i<childs.length-1;i++){
-				 var height = parseInt(childs[i].style.height);
-				 if(height!=dataSet[i]) {childs[i].style.height = dataSet[i]+"px";}
+			function deleteSelf(){
+				document.getElementById("showBoard").removeChild(this);
 			}
-		}
-		function btn1_click(){
-			if(document.getElementById("show").querySelectorAll("div").length > 60){
-				alert("no more than 60 data.");
-				return ;
+			function checkData(data){
+				if(data.length==0) {alert("Input legal Data!!");return false;}
+				for(var i=0;i<data.length;i++){
+					if(!(data[i]>='0' && data[i]<='9')) {alert("Input legal Data!!");return false;}
+				}
+				if(!(10<=parseInt(data) && parseInt(data)<=100)) {alert("Input legal Data!!");return false;}
+				var add = document.createElement("div");
+				add.innerText = data;
+				add.style.height = data*2 + 'px'; 
+				add.addEventListener("click",deleteSelf,false);
+				return add;
 			}
-			var child = createChild(document.getElementById("input_data").value);
-			if(!child) return ;
-			addChild(document.getElementById("show"),child);
-			insert_sort();
-			sort_show();
-		}
-		function btn1_keyPress(e){
-			if(e.keyCode == 13){
-				btn1_click();
-				this.value = null;
-			}
-		}
-		function init(){
-			document.getElementById("but1").addEventListener("click",btn1_click,false);
-			document.getElementById("input_data").addEventListener("keypress",btn1_keyPress,false);
 			
+			function addLeft(){
+				var add  = checkData(document.getElementById("input_data").value);
+				if(!add) return ;
+
+				var oShow = document.getElementById("showBoard");
+				if(oShow.childNodes.length==0) oShow.appendChild(add);
+				else                           oShow.insertBefore(add,oShow.childNodes[0]);
+			}
+			function addRight(){
+				var add = checkData(document.getElementById("input_data").value);
+				if(!add) return ;
+
+				var oShow = document.getElementById("showBoard");
+				oShow.appendChild(add);
+			}
+			function deleteLeft(){
+				var oShow = document.getElementById("showBoard");
+				alert(oShow.firstChild.innerText);
+				oShow.removeChild(oShow.firstChild);
+			}
+			function deleteRight(){
+				var oShow = document.getElementById("showBoard");
+				alert(oShow.childNodes[oShow.childNodes.length-1].innerText);
+				oShow.removeChild(oShow.childNodes[oShow.childNodes.length-1]);
+			}
+			function changeColor(obj,color,set){
+				set[obj].style.backgroundColor = color;
+			}
+			function swap(obj1,obj2,set){
+
+				set[obj1].parentNode.insertBefore(set[obj2],set[obj1]);
+			}
+			function see_sort(){
+
+				var columns = document.getElementById('showBoard').childNodes;
+				var time = 1;
+				var cols = new Array();
+				for(var i = 0;i<columns.length;i++){cols.push(parseInt(columns[i].style.height));}
+				for(var i = 0;i < cols.length-1;i++){
+					for(var j = 0;j<cols.length-1-i;j++){
+						if(cols[j]>cols[j+1]){
+							var t;
+							t=cols[j];cols[j]=cols[j+1];cols[j+1]=t;
+							time++;
+							setTimeout(swap.bind(this,j,j+1,columns),time*1000);
+							setTimeout(changeColor.bind(this,j,"blue",columns),time*1000);
+							setTimeout(changeColor.bind(this,j+1,"yellow",columns),time*1000);
+							setTimeout(changeColor.bind(this,j,"red",columns),(time+1)*1000);
+							setTimeout(changeColor.bind(this,j+1,"red",columns),(time+1)*1000);			
+						}
+		
+					}
+				}
+				console.log(cols);
+			}
 			
-		}
-		init();
+			function init(){
+				document.getElementById("but1").addEventListener("click",addLeft,false);
+				document.getElementById("but2").addEventListener("click",addRight,false);
+				document.getElementById("but3").addEventListener("click",deleteLeft,false);
+				document.getElementById("but4").addEventListener("click",deleteRight,false);
+
+				document.getElementById("but1").addEventListener("click",deleteText,false);
+				document.getElementById("but2").addEventListener("click",deleteText,false);
+				document.getElementById("but3").addEventListener("click",deleteText,false);
+				document.getElementById("but4").addEventListener("click",deleteText,false);
+
+				document.getElementById('sort').addEventListener('click',see_sort,false);
+			}
+			init();
 	</script>
 </body>
 </html>
